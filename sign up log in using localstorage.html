@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up & Log In</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: lightblue;
+            padding: 10px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding: 70px;
+            background: grey;
+            border-radius: 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 15px 0;
+            border: 1px solid #ccc;
+            border-radius: 15px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: pink;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: blue;
+        }
+        .message {
+            margin: 10px 0;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Sign Up</h2>
+        <input type="text" id="signupUsername" placeholder="Enter Username">
+        <input type="password" id="signupPassword" placeholder="Enter Password">
+        <button onclick="signUp()">Sign Up</button>
+        <p class="message" id="signupMessage"></p>
+
+        <h2>Log In</h2>
+        <input type="text" id="loginUsername" placeholder="Enter Username">
+        <input type="password" id="loginPassword" placeholder="Enter Password">
+        <button onclick="logIn()">Log In</button>
+        <p class="message" id="loginMessage"></p>
+    </div>
+
+    <script>
+        // Sign Up Function
+        function signUp() {
+            const username = document.getElementById('signupUsername').value;
+            const password = document.getElementById('signupPassword').value;
+
+            if (username && password) {
+                // Store user data in localStorage
+                localStorage.setItem(username, password);
+                document.getElementById('signupMessage').textContent = "Sign up successful!";
+                document.getElementById('signupMessage').style.color = "green";
+            } else {
+                document.getElementById('signupMessage').textContent = "Please fill all fields.";
+            }
+        }
+
+        // Log In Function
+        function logIn() {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+
+            // Validate credentials
+            if (localStorage.getItem(username) === password) {
+                document.getElementById('loginMessage').textContent = "Log in successful!";
+                document.getElementById('loginMessage').style.color = "green";
+            } else {
+                document.getElementById('loginMessage').textContent = "Invalid username or password.";
+            }
+        }
+    </script>
+</body>
+</html>
